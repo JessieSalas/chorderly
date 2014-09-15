@@ -1,0 +1,203 @@
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+
+<Practitioner>:
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        ScreenManager:
+            id: manager
+            Screen:
+                name: 'landing'
+                FloatLayout:
+                    canvas.before:
+                        Color:
+                            rgb: (0.952941176 ,0.949019608,0.933333333)
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Label:
+                        font_name: 'SkarpaLt.ttf'
+                        color: (0,0,0, 1)
+                        pos_hint: {'x': 0, 'y': 0.4}
+                        text: 'Chordinate'
+                        font_size: '75dp'
+
+                    Label:
+                        color: (0,0,0, 1)
+                        pos_hint: {'x': 0, 'y': 0.3}
+                        text: 'Practice better.'
+                        font_size: '15dp'
+
+                    Image:
+                        source: 'logo.png'
+                        pos_hint: {'x': 0.3, 'y': 0.3}
+                        size_hint: (0.4, 0.4)
+                        allow_stretch: True
+
+                    Button:
+                        background_color: (0.7 ,0.8,0.9,1)
+                        background_normal: ''
+                        font_size: '20dp'
+                        size_hint: (1, 0.1)
+                        pos_hint: {'x': 0, 'y': 0.045}
+                        markup: True
+                        text: '[color=4A4A4A] [b]PRACTICE [b] '
+                        on_release: manager.transition = FadeTransition()
+                        on_release: manager.current = 'practice'
+                        on_release: root.mang = manager
+                        on_release: root.update_practice_state()
+                        on_release: root.get_next() 
+
+                    Button:
+                        background_color: (0.6 ,0.7,0.8,1)
+                        background_normal: ''
+                        size_hint: (1, 0.05)
+                        pos_hint: {'x': 0, 'y': 0}
+                        markup: True
+                        text: '[color=4A4A4A] [b] VIEW PROGRESS [b]'
+                        on_release: manager.current = 'progress' 
+
+            Screen:
+                name: 'practice'
+                FloatLayout:
+                    canvas.before:
+                        Color:
+                            rgb: (0.952941176 ,0.949019608,0.933333333)
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+ 
+                    Label:
+                        bold: True
+                        markup: True
+                        font_size: '35dp'
+                        text: '[color=000000]' +  root.curr_chord
+
+                    Label:
+                        pos_hint: {'x': 0, 'y': 0.4}
+                        bold: True
+                        markup: True
+                        font_size: '15dp'
+                        text: '[color=000000]' + root.state_text
+
+                    Label:
+                        pos_hint: {'x': 0, 'y': 0.3}
+                        bold: True
+                        markup: True
+                        font_size: '30dp'
+                        text: '[color=000000]' + root.lick_text
+
+                    Button:
+                        background_color: (0.6 ,0.7,0.8,1)
+                        background_normal: ''
+                        size_hint: (1, 0.1)
+                        pos_hint: {'x': 0, 'y': 0}
+                        markup: True
+                        text: '[color=4A4A4A] [b] continue [b]'
+                        on_press: root.update_practice_state()
+                        on_press: root.increment_practice_state()
+
+            Screen:
+                name: 'rate'
+                FloatLayout:
+                    canvas.before:
+                        Color:
+                            rgb: (0.952941176 ,0.949019608,0.933333333)
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+                    Label:
+                        pos_hint: {'x': 0, 'y': 0.4}
+                        bold: True
+                        markup: True
+                        font_size: '25dp'
+                        text: '[color=000000] Rate your proficiency'
+ 
+                    Label:
+                        bold: True
+                        markup: True
+                        font_size: '35dp'
+                        text: '[color=000000]' +  root.curr_chord
+
+                    Button:
+                        background_color: (0.6 ,0.7,0.8,1)
+                        background_normal: ''
+                        size_hint: (0.25, 0.1)
+                        pos_hint: {'x': 0, 'y': 0}
+                        markup: True
+                        text: '[color=4A4A4A] [b] 1 [b]'
+                        on_press: manager.transition = SlideTransition()
+                        on_release: app.update_curr_chord(root.curr_chord,1)
+                        on_release: root.get_next() 
+                        on_release: root.reset_practice_state() 
+                        on_release: manager.current = 'practice'
+
+                    Button:
+                        background_color: (0.6 ,0.7,0.8,1)
+                        background_normal: ''
+                        size_hint: (0.25, 0.1)
+                        pos_hint: {'x': 0.25, 'y': 0}
+                        markup: True
+                        text: '[color=4A4A4A] [b] 2 [b]'
+                        on_press: manager.transition = SlideTransition()
+                        on_release: app.update_curr_chord(root.curr_chord,2)
+                        on_release: root.get_next() 
+                        on_release: root.reset_practice_state() 
+                        on_release: manager.current = 'practice'
+
+                    Button:
+                        background_color: (0.6 ,0.7,0.8,1)
+                        background_normal: ''
+                        size_hint: (0.25, 0.1)
+                        pos_hint: {'x': 0.5, 'y': 0}
+                        markup: True
+                        text: '[color=4A4A4A] [b] 3 [b]'
+                        on_press: manager.transition = SlideTransition()
+                        on_release: app.update_curr_chord(root.curr_chord,3)
+                        on_release: root.get_next() 
+                        on_release: root.reset_practice_state() 
+                        on_release: manager.current = 'practice'
+
+
+                    Button:
+                        background_color: (0.6 ,0.7,0.8,1)
+                        background_normal: ''
+                        size_hint: (0.25, 0.1)
+                        pos_hint: {'x': 0.75, 'y': 0}
+                        markup: True
+                        text: '[color=4A4A4A] [b] 4 [b]'
+                        on_press: manager.transition = SlideTransition()
+                        on_release: app.update_curr_chord(root.curr_chord,4)
+                        on_release: root.get_next() 
+                        on_release: root.reset_practice_state() 
+                        on_release: manager.current = 'practice'
+
+
+            Screen:
+                name: 'progress'
+                FloatLayout:
+                    canvas.before:
+                        Color:
+                            rgb: (0.952941176 ,0.949019608,0.933333333)
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Label:
+                        bold: True
+                        markup: True
+                        font_size: '35dp'
+                        text: '[color=000000]' + str((1- app.progress/544) *100 )[0:4] +'% mastery'
+
+                    Button:
+                        background_color: (0.6 ,0.7,0.8,1)
+                        background_normal: ''
+                        size_hint: (1, 0.1)
+                        pos_hint: {'x': 0, 'y': 0}
+                        markup: True
+                        text: '[color=4A4A4A] [b] back [b]'
+                        on_press: manager.transition = SlideTransition()
+                        on_release: manager.current = 'landing'
+
+

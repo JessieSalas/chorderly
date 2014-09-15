@@ -1,0 +1,69 @@
+<Avocado>:
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'top'
+        ScreenManager:
+            id: manager
+            Screen:
+                name: 'landing'
+                FloatLayout:
+                    canvas.before:
+                        Color:
+                            rgb: (0.952941176 ,0.949019608,0.933333333)
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+                    Label:
+                        font_name: 'SkarpaLt.ttf'
+                        color: (0,0,0, 1)
+                        pos_hint: {'x': 0, 'y': 0.4}
+                        text: 'Chordinate'
+                        font_size: '75dp'
+
+                    Label:
+                        color: (0,0,0, 1)
+                        pos_hint: {'x': 0, 'y': 0.3}
+                        text: 'Practice better.'
+                        font_size: '15dp'
+
+                    Image:
+                        source: 'logo.png'
+                        pos_hint: {'x': 0.3, 'y': 0.3}
+                        size_hint: (0.4, 0.4)
+                        allow_stretch: True
+
+                    Button:
+                        font_name: 'SkarpaLt.ttf'
+                        size_hint: (1, 0.05)
+                        pos_hint: {'x': 0, 'y': 0.047}
+                        text: 'Practice'
+                        on_release: manager.current = 'augmentation'
+
+                    Button:
+                        size_hint: (1, 0.05)
+                        pos_hint: {'x': 0, 'y': 0}
+                        markup: True
+                        text: '[b] VIEW PROGRESS [b]'
+                        on_release: manager.current = 'augmentation'
+
+            Screen:
+                name: 'augmentation'
+                GridLayout:
+                    rows: 15
+                    canvas.before:
+                        Color:
+                            rgb: (0.952941176   ,0.949019608,0.933333333)
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    Button:
+                        text: "hey"
+                    Button:
+                        text: "man"
+                    Button:
+                        text: "super"
+                    Button:
+                        text: "awesome"
+                    Button:
+                        text: ''
